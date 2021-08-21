@@ -7,6 +7,11 @@ const categorySchema = new mongoose.Schema({
         trim: true,
         require: true
     },
+    categoryName: {
+        type: String,
+        required: true,
+        trim: true
+    },
     status: {
         type: String,
         require: true
