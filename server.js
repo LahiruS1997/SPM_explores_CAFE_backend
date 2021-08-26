@@ -16,6 +16,7 @@ app.use(fileUpload({
 //routes
 app.use('/user', require('./userRoutes/userRouter'))
 app.use('/api', require('./userRoutes/foodsRouter'))
+app.use('/api', require('./userRoutes/upload'))
 
 
 //connect to DB

@@ -1,17 +1,19 @@
 const Users = require('../models/userModel')
 
 //password encrypted using bcrypt
-// const bcrypt = require('bcrypt')
+
 
 //user authentication using jsonwebtoken
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+
+
 
 const userC = {
 
     register: async(req, res) => {
         try{
 
-            const {name, email,mobile,role, password} = req.body;
+            const {name, email, mobile, role, password} = req.body;
 
             const user = await Users.findOne({email})
             if(user) return res.status(400).json({msg: "The email already exists"})
@@ -24,12 +26,12 @@ const userC = {
 
             
 
-            // const passwordHash = await bcrypt.hash(password,10)
+            // const passwordHash = await bcrypt.hash(password, 10)
             // const newUser = new Users({
             //     name, email,mobile,role, password: passwordHash
             // })
 
-            //const passwordHash = await bcrypt.hash(password,10)
+            // const password = await (password,10)
             const newUser = new Users({
                 name, email,mobile,role, password
             })
@@ -118,16 +120,16 @@ const userC = {
         }
         catch(err){return res.status(500).json({msg: err.message})}
     },
-    // getUser: async (req,res) =>{
-    //     try{
-    //         const user = await Users.findById(req.user.id).select('-password')
-    //         if(!user) return res.status(400).json({msg: "User Does not exist  (Auth)"})
+    getUser: async (req,res) =>{
+        try{
+            const user = await Users.findById(req.user.id).select('-password')
+            if(!user) return res.status(400).json({msg: "User Does not exist  (Auth)"})
             
-    //         res.json(user)
-    //     }catch(err){
-    //        return res.status(500).json({msg:err.message}) 
-    //     }
-    // }
+            res.json(user)
+        }catch(err){
+           return res.status(500).json({msg:err.message}) 
+        }
+    }
 }
 
 
