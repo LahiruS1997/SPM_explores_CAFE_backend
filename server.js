@@ -14,6 +14,8 @@ app.use(fileUpload({
 }))
 
 app.use('/api', require('./routes/categoryRouter'))
+app.use('/user', require('./routes/userRouter'))
+app.use('/api', require('./routes/cashierReportRouter'))
 
 //connect to DB
 const URI = process.env.MONGODB_URL
@@ -27,6 +29,20 @@ mongoose.connect(URI, {
     console.log("Connected MongoDB")
 })
 
+const cashierReportRouter = require('./routes/cashierReportT.js');
+app.use("/saveNewReport", cashierReportRouter);
+
+const newReportRouter = require('./routes/NewReportRouter.js');
+app.use("/newReportRouteFile", newReportRouter);
+
+const productRouter = require('./routes/productRouter');
+app.use("/product", productRouter);
+
+const userNewRouter = require('./routes/newuserRouter');
+app.use("/usersnew", userNewRouter);
+
+const categoryCashierRouter = require('./routes/categoryCashier.js');
+app.use("/categoryRouter", categoryCashierRouter);
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
