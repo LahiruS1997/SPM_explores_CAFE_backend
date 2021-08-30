@@ -15,6 +15,7 @@ app.use(fileUpload({
 
 // Routes
 app.use('/api', require('./routes/foodsRouter'))
+app.use('/api', require('./routes/orderRouter'))
 // app.use('/api', require('./routes/upload'))
 app.use('/api', require('./routes/upload'))
 

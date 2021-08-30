@@ -34,10 +34,10 @@ const foodSchema = new mongoose.Schema({
         type: String,
         default: 'Display'
     },
-    category: {
-        type: String,
-        required: true
-    },
+    // category: {
+    //     type: String,
+    //     required: true
+    // },
     sold: {
         type: Number,
         default: 0

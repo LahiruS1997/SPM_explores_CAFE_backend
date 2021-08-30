@@ -71,8 +71,9 @@ const foodCtrl = {
 
     createFood: async(req, res) => {
         try {
-            const {food_id, name, description, ingredients, images, price, status, category} = req.body;
-            // // if(!images) return res.status(400).json({msg: "Please Upload an Image!"})
+            const {food_id, name, description, ingredients, images, price } = req.body;
+            // status, category
+            if(!images) return res.status(400).json({msg: "Please Upload an Image!"})
 
             const food = await Foods.findOne({food_id})
             if(food)
@@ -84,9 +85,9 @@ const foodCtrl = {
                     description,
                     ingredients, 
                     images, 
-                    price, 
-                    status, 
-                    category
+                    price 
+                    // status, 
+                    // category
                 })
 
                 await newFood.save()
