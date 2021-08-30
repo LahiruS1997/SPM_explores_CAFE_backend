@@ -1,7 +1,7 @@
 const Users = require('../models/userModel')
 
 //password encrypted using bcrypt
-
+const bcrypt = require('bcrypt')
 
 //user authentication using jsonwebtoken
 const jwt = require('jsonwebtoken');
@@ -26,15 +26,15 @@ const userC = {
 
             
 
-            // const passwordHash = await bcrypt.hash(password, 10)
-            // const newUser = new Users({
-            //     name, email,mobile,role, password: passwordHash
-            // })
-
-            // const password = await (password,10)
+            const passwordHash = await bcrypt.hash(password, 10)
             const newUser = new Users({
-                name, email,mobile,role, password
+                name, email,mobile,role, password: passwordHash
             })
+
+            //  no need -- const password = await (password,10)
+            // const newUser = new Users({
+            //     name, email,mobile,role, password
+            // })
 
 
 
@@ -66,10 +66,10 @@ const userC = {
             const user = await Users.findOne({email})
             if(!user) return res.status(400).json({msg: "User does not exist."})
 
-            // const isMatch = await bcrypt.compare(password, user.password)
-            // if(!isMatch) return res.status(400).json({msg: "Password is Incorrect..Please try again"})
-            const isMatch = await (password, user.password)
+            const isMatch = await bcrypt.compare(password, user.password)
             if(!isMatch) return res.status(400).json({msg: "Password is Incorrect..Please try again"})
+            // const isMatch = await (password, user.password)
+            // if(!isMatch) return res.status(400).json({msg: "Password is Incorrect..Please try again"})
 
 
             //after successfully login to the system. create access token and refresh token
