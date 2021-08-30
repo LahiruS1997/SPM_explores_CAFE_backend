@@ -36,6 +36,8 @@ const userC = {
             //     name, email,mobile,role, password
             // })
 
+            //test comment
+
 
 
             //Save mongodb using save()
