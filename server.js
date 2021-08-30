@@ -16,6 +16,7 @@ app.use(fileUpload({
 app.use('/user', require('./routes/userRouter'))
 app.use('/api', require('./routes/categoryRouter'))
 app.use('/api', require('./routes/upload'))
+app.use('/api', require('./routes/foodsRouter'))
 //app.use('/api', require('./routes/productRouter'))
 
 const URI = process.env.MONGODB_URL
@@ -29,6 +30,12 @@ mongoose.connect(URI, {
     console.log("Connected MongoDB")
 })
 
+/**
+ * const adminConferenceRouter = require('./routes/adminConferenceView.js');
+app.use("/adminConference", adminConferenceRouter);
+ */
+const somethingRouter = require('./routes/somethingRoutes.js');
+app.use("/somethingUseFrom", somethingRouter);
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {

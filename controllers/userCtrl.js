@@ -131,7 +131,7 @@ const userCtrl = {
     getUsersInformation: async (req, res) => {
         try {
             
-            const user = await Users.find()
+            const user = await Users.find({role: {$nin: [0, 1, 2, 3, '']}})
             res.json(user)
 
         } catch (err) {
